@@ -76,20 +76,22 @@ export default {
 <style>
 body {
   background: gray;
-  /* background: url('https://cdn.pixabay.com/photo/2017/03/17/19/37/sky-2152463_1280.jpg'); */
-  background: url("https://unleash.org/wp-content/uploads/2017/01/sky-1280x720.jpg")
+  /* background: url(https://cdn.pixabay.com/photo/2017/03/17/19/37/sky-2152463_1280.jpg); */
+  background: url(https://unleash.org/wp-content/uploads/2017/01/sky-1280x720.jpg)
     no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
   background-size: cover;
   background-position: fixed;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
   -webkit-user-select: none;
   color: white;
   font-size: 18px;
   line-height: 24px;
   overflow: hidden;
+  /* width: 100vw; */
+  /* height: 100vh; */
+  margin: 0px;
 }
 
 #app {
@@ -132,6 +134,10 @@ iframe {
   height: 350px;
   overflow: hidden;
   background: white;
+}
+
+button {
+  margin: 5px;
 }
 
 button:hover {
