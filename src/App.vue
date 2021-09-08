@@ -58,7 +58,7 @@ export default {
     // }, 10000);
   },
   methods: {
-    updateSite(index) {
+    updateSite() {
       this.index = (this.index + 1) % this.siteData.length;
       if (this.index == 0) {
         this.prevIndex = this.siteData.length - 1;
@@ -145,35 +145,5 @@ button:hover {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
-} */
-
-/* .slide-fade-enter-active {
-  transition: all 0.5s ease;
-}
-.slide-fade-leave-active {
-  transition: all 0.5s cubic-bezier(1, 0, 0.8, 1);
-}
-.slide-fade-enter, .slide-fade-leave-to
-{
-  transform: translateX(-100px);
-  opacity: 0;
-} */
-
-/* .bounce-enter-active {
-  animation: bounce-in .5s;
-}
-.bounce-leave-active {
-  animation: bounce-in .5s reverse;
-}
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
 } */
 </style>
