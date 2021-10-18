@@ -3,11 +3,12 @@
     <!-- <div class="title">
       😩 take me back
     </div> -->
+
     <transition name="fade">
       <TextBorder
         :key="siteData[index].url"
         class="radical"
-        :text="siteData[index].url"
+        :text="sliceURL(siteData[index].url)"
         size="680"
       />
     </transition>
@@ -16,7 +17,7 @@
       <TextBorder
         :key="siteData[index].date"
         class="radical"
-        :text="'' + siteData[index].date"
+        :text="'visited on ' + siteData[index].date.toLowerCase()"
         size="430"
       />
     </transition>
@@ -28,6 +29,20 @@
           :key="siteData[index].url"
           :src="siteData[index].url"
         ></iframe>
+        <!-- <blockquote class="twitter-tweet">
+          <p lang="en" dir="ltr">
+            kinda cool to think of friendships as worldbuilding: creating a map
+            and language for an entirely new little world together<br /><br />shared
+            experiences become coordination points for things that can&#39;t be
+            articulated in words and form the fabric of the world&#39;s spoken +
+            unspoken language
+          </p>
+          &mdash; Molly Mielke (@mollyfmielke)
+          <a
+            href="https://twitter.com/mollyfmielke/status/1421498523502235653?ref_src=twsrc%5Etfw"
+            >July 31, 2021</a
+          >
+        </blockquote> -->
       </div>
     </div>
 
@@ -49,8 +64,8 @@ export default {
   },
   data: function () {
     return {
-      index: 0,
-      prevIndex: 1,
+      index: siteDataJSON.siteData.length - 1,
+      prevIndex: 0,
       siteData: siteDataJSON.siteData,
     };
   },
@@ -72,6 +87,13 @@ export default {
       // If there are individual buttons
       // this.index = index;
     },
+    sliceURL(url) {
+      let urlToDisplay = url;
+      if (url.length > 70) {
+        urlToDisplay = urlToDisplay.slice(0, 70) + '...';
+      }
+      return urlToDisplay;
+    }
   },
 };
 </script>
@@ -87,7 +109,7 @@ body {
 
   /* BEACH WAVES COMING IN AND OUT background: url(https://media1.giphy.com/media/l4hLyOGRJWNSR8QQ8/giphy.gif?cid=ecf05e475u1fsbnioaemivo6097512teide6fcbsff5aj004&rid=giphy.gif&ct=g) */
 
-  background: url(https://media3.giphy.com/media/l0ExcZR3msPMnknBu/giphy.gif?cid=ecf05e47extt0bvm4kdho597jrikny1z18uknfmwm6hqhv9t&rid=giphy.gif&ct=g); 
+  background: url(https://media3.giphy.com/media/l0ExcZR3msPMnknBu/giphy.gif?cid=ecf05e47extt0bvm4kdho597jrikny1z18uknfmwm6hqhv9t&rid=giphy.gif&ct=g);
   background-size: cover;
   background-position: fixed;
   -moz-user-select: none;
@@ -95,7 +117,7 @@ body {
   user-select: none;
   -webkit-user-select: none;
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 24px;
   overflow: hidden;
   /* width: 100vw; */
@@ -182,7 +204,7 @@ button:hover {
 
 /* .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 3s;
+  transition: opacity 1s;
 }
 .fade-enter,
 .fade-leave-to {
