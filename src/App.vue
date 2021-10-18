@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <!-- <button @click="updateSite()">⇦</button> -->
+    <button @click="updateSite()">back</button>
     <!-- <button v-for="(data, index) in siteData" @click="updateSite(index)">
       {{ siteData[index].date }}
     </button> -->
@@ -190,7 +190,10 @@ button {
   border: none;
 
   color: white;
-  font-size: 24px;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: inherit;
+  font-style: italic;
 
   position: absolute;
   top: 50%;
@@ -200,6 +203,8 @@ button {
 
 button:hover {
   cursor: w-resize;
+
+  color: lavender;
 }
 
 /* .fade-enter-active,
