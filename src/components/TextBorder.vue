@@ -23,7 +23,7 @@ export default {
   name: "TextBorder",
   props: {
     text: String,
-    size: String,
+    size: Number,
   },
 };
 </script>

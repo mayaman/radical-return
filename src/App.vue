@@ -4,12 +4,16 @@
       😩 take me back
     </div> -->
 
+    <video class="video-background" autoplay loop muted playsinline>
+      <source src="@/assets/sunset_crop.mp4" type="video/mp4" />
+    </video>
+
     <transition name="fade">
       <TextBorder
         :key="siteData[index].url"
         class="radical"
         :text="sliceURL(siteData[index].url)"
-        size="680"
+        :size="outerSize"
       />
     </transition>
 
@@ -18,7 +22,7 @@
         :key="siteData[index].date"
         class="radical"
         :text="'visited on ' + siteData[index].date.toLowerCase()"
-        size="430"
+        :size="innerSize"
       />
     </transition>
 
@@ -29,28 +33,11 @@
           :key="siteData[index].url"
           :src="siteData[index].url"
         ></iframe>
-        <!-- <blockquote class="twitter-tweet">
-          <p lang="en" dir="ltr">
-            kinda cool to think of friendships as worldbuilding: creating a map
-            and language for an entirely new little world together<br /><br />shared
-            experiences become coordination points for things that can&#39;t be
-            articulated in words and form the fabric of the world&#39;s spoken +
-            unspoken language
-          </p>
-          &mdash; Molly Mielke (@mollyfmielke)
-          <a
-            href="https://twitter.com/mollyfmielke/status/1421498523502235653?ref_src=twsrc%5Etfw"
-            >July 31, 2021</a
-          >
-        </blockquote> -->
       </div>
     </div>
 
     <button id="back" @click="backInTime()">back</button>
     <button id="forward" @click="forwardInTime()">forward</button>
-    <!-- <button v-for="(data, index) in siteData" @click="updateSite(index)">
-      {{ siteData[index].date }}
-    </button> -->
   </div>
 </template>
 
@@ -68,7 +55,19 @@ export default {
       index: siteDataJSON.siteData.length - 1,
       prevIndex: 0,
       siteData: siteDataJSON.siteData,
+      outerSize: 680,
+      innerSize: 430,
+      largeOuterSize: 680,
+      largeInnerSize: 430,
+      mediumOuterSize: 530,
+      mediumInnerSize: 330,
+      smallOuterSize: 370,
+      smallInnerSize: 220,
+      mediumWidthMax: 800,
     };
+  },
+  created() {
+    window.addEventListener("resize", this.handleWindowResize);
   },
   mounted() {
     // console.log(this.siteData);
@@ -76,8 +75,25 @@ export default {
     //   this.updateSite();
     // }, 10000);
   },
+  computed: {},
   methods: {
+    handleWindowResize() {
+      console.log("new outer size: ", this.outerSize);
+
+      if (window.innerWidth >= 900) {
+        this.outerSize = this.largeOuterSize;
+        this.innerSize = this.largeInnerSize;
+      } else if (window.innerWidth > 600 && window.innerWidth < 900) {
+        this.outerSize = this.mediumOuterSize;
+        this.innerSize = this.mediumInnerSize;
+      } else if (window.innerWidth < 600) {
+        this.outerSize = this.smallOuterSize;
+        this.innerSize = this.smallInnerSize;
+      }
+    },
     backInTime() {
+      this.outerSize = this.mediumOuterSize;
+
       console.log("prev index: ", this.index);
 
       this.index = this.index + 1;
@@ -86,15 +102,6 @@ export default {
         this.index = 0;
       }
       console.log("new index: ", this.index);
-
-      // if (this.index == 0) {
-      //   this.prevIndex = this.siteData.length - 1;
-      // } else {
-      //   this.prevIndex = this.index - 1;
-      // }
-
-      // If there are individual buttons
-      // this.index = index;
     },
     forwardInTime() {
       console.log("prev index: ", this.index);
@@ -105,12 +112,6 @@ export default {
         this.index = this.siteData.length - 1;
       }
       console.log("new index: ", this.index);
-
-      // if (this.index == 0) {
-      //   this.prevIndex = this.siteData.length - 1;
-      // } else {
-      //   this.prevIndex = this.index - 1;
-      // }
     },
     sliceURL(url) {
       let urlToDisplay = url;
@@ -134,7 +135,9 @@ body {
 
   /* BEACH WAVES COMING IN AND OUT background: url(https://media1.giphy.com/media/l4hLyOGRJWNSR8QQ8/giphy.gif?cid=ecf05e475u1fsbnioaemivo6097512teide6fcbsff5aj004&rid=giphy.gif&ct=g) */
 
-  background: url(https://media3.giphy.com/media/l0ExcZR3msPMnknBu/giphy.gif?cid=ecf05e47extt0bvm4kdho597jrikny1z18uknfmwm6hqhv9t&rid=giphy.gif&ct=g);
+  /* background: url(https://media3.giphy.com/media/l0ExcZR3msPMnknBu/giphy.gif?cid=ecf05e47extt0bvm4kdho597jrikny1z18uknfmwm6hqhv9t&rid=giphy.gif&ct=g); */
+
+  /* background: url(https://media2.giphy.com/media/3oz8xur099boo4N9aU/giphy.gif?cid=ecf05e47lk8f72afxgh856vrlg5rmpwfhhxnspk7epzqzbi4&rid=giphy.gif&ct=g); */
   background-size: cover;
   background-position: fixed;
   -moz-user-select: none;
@@ -152,10 +155,19 @@ body {
 }
 
 #app {
+  position: fixed;
   width: 100vw;
   min-width: 100vw;
   height: 100vh;
   min-height: 100vh;
+  overflow: hidden;
+}
+
+video.video-background {
+  height: 100%;
+  width: 183.20610687vh; /* 100 * 16 / 9 */
+  min-width: 100%;
+  min-height: 54.5833333333vw; /* 100 * 9 / 16 */
 }
 
 .title {
@@ -229,13 +241,13 @@ button#back {
   left: 10%;
 }
 
-button#back:hover {
-  cursor: w-resize;
-}
-
 button#forward {
   top: 50%;
   right: 8%;
+}
+
+button#back:hover {
+  cursor: w-resize;
 }
 
 button#forward:hover {
@@ -254,4 +266,44 @@ button:hover {
 .fade-leave-to {
   opacity: 0;
 } */
+
+@media only screen and (max-width: 600px) {
+  .outer-shape {
+    width: 300px;
+    height: 300px;
+  }
+
+  .inner-shape {
+    width: 150px;
+    height: 150px;
+  }
+
+  button#back {
+    left: 1%;
+  }
+
+  button#forward {
+    right: 1%;
+  }
+}
+
+@media only screen and (max-width: 900px) and (min-width: 600px) {
+  .outer-shape {
+    width: 450px;
+    height: 450px;
+  }
+
+  .inner-shape {
+    width: 250px;
+    height: 250px;
+  }
+
+  button#back {
+    left: 1%;
+  }
+
+  button#forward {
+    right: 1%;
+  }
+}
 </style>
