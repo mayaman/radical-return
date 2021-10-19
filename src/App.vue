@@ -78,8 +78,6 @@ export default {
   computed: {},
   methods: {
     handleWindowResize() {
-      console.log("new outer size: ", this.outerSize);
-
       if (window.innerWidth >= 900) {
         this.outerSize = this.largeOuterSize;
         this.innerSize = this.largeInnerSize;
@@ -113,7 +111,7 @@ export default {
       if (window.innerWidth < 600) {
         maxURLLength = 50;
       }
-      
+
       if (url.length > maxURLLength) {
         urlToDisplay = urlToDisplay.slice(0, 70) + "...";
       }
@@ -283,13 +281,13 @@ button:hover {
   }
 
   button#back {
-    top: 15%;
+    top: 18%;
     left: 50%;
   }
 
   button#forward {
     left: 50%;
-    top: 85%;
+    top: 80%;
   }
 }
 
