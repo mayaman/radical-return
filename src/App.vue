@@ -52,8 +52,7 @@ export default {
   },
   data: function () {
     return {
-      index: siteDataJSON.siteData.length - 1,
-      prevIndex: 0,
+      index: Math.floor(Math.random() * siteDataJSON.siteData.length - 1),
       siteData: siteDataJSON.siteData,
       outerSize: 680,
       innerSize: 430,
@@ -93,28 +92,29 @@ export default {
       }
     },
     backInTime() {
-      console.log("prev index: ", this.index);
-
       this.index = this.index + 1;
 
       if (this.index >= this.siteData.length) {
         this.index = 0;
       }
-      console.log("new index: ", this.index);
     },
     forwardInTime() {
-      console.log("prev index: ", this.index);
-
       this.index = this.index - 1;
 
       if (this.index < 0) {
         this.index = this.siteData.length - 1;
       }
-      console.log("new index: ", this.index);
     },
     sliceURL(url) {
       let urlToDisplay = url;
-      if (url.length > 70) {
+
+      let maxURLLength = 70;
+      
+      if (window.innerWidth < 600) {
+        maxURLLength = 50;
+      }
+      
+      if (url.length > maxURLLength) {
         urlToDisplay = urlToDisplay.slice(0, 70) + "...";
       }
       return urlToDisplay;
@@ -230,9 +230,9 @@ button {
   line-height: 24px;
   font-family: inherit;
   font-style: italic;
-  /* font-size: 3em; */
+  text-align: center;
   position: absolute;
-  transform: translate(0, -50%);
+  transform: translate(-50%, -50%);
 }
 
 button#back {
@@ -267,6 +267,11 @@ button:hover {
 } */
 
 @media only screen and (max-width: 600px) {
+  body {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
   .outer-shape {
     width: 300px;
     height: 300px;
@@ -278,11 +283,13 @@ button:hover {
   }
 
   button#back {
-    left: 1%;
+    top: 15%;
+    left: 50%;
   }
 
   button#forward {
-    right: 1%;
+    left: 50%;
+    top: 85%;
   }
 }
 
