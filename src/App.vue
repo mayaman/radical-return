@@ -1,5 +1,5 @@
 <template>
-  <div @click="updateSite()" id="app">
+  <div id="app">
     <!-- <div class="title">
       😩 take me back
     </div> -->
@@ -46,7 +46,8 @@
       </div>
     </div>
 
-    <button @click="updateSite()">back</button>
+    <button id="back" @click="backInTime()">back</button>
+    <button id="forward" @click="forwardInTime()">forward</button>
     <!-- <button v-for="(data, index) in siteData" @click="updateSite(index)">
       {{ siteData[index].date }}
     </button> -->
@@ -76,24 +77,48 @@ export default {
     // }, 10000);
   },
   methods: {
-    updateSite() {
-      this.index = (this.index + 1) % this.siteData.length;
-      if (this.index == 0) {
-        this.prevIndex = this.siteData.length - 1;
-      } else {
-        this.prevIndex = this.index - 1;
+    backInTime() {
+      console.log("prev index: ", this.index);
+
+      this.index = this.index + 1;
+
+      if (this.index >= this.siteData.length) {
+        this.index = 0;
       }
+      console.log("new index: ", this.index);
+
+      // if (this.index == 0) {
+      //   this.prevIndex = this.siteData.length - 1;
+      // } else {
+      //   this.prevIndex = this.index - 1;
+      // }
 
       // If there are individual buttons
       // this.index = index;
     },
+    forwardInTime() {
+      console.log("prev index: ", this.index);
+
+      this.index = this.index - 1;
+
+      if (this.index < 0) {
+        this.index = this.siteData.length - 1;
+      }
+      console.log("new index: ", this.index);
+
+      // if (this.index == 0) {
+      //   this.prevIndex = this.siteData.length - 1;
+      // } else {
+      //   this.prevIndex = this.index - 1;
+      // }
+    },
     sliceURL(url) {
       let urlToDisplay = url;
       if (url.length > 70) {
-        urlToDisplay = urlToDisplay.slice(0, 70) + '...';
+        urlToDisplay = urlToDisplay.slice(0, 70) + "...";
       }
       return urlToDisplay;
-    }
+    },
   },
 };
 </script>
@@ -123,7 +148,7 @@ body {
   /* width: 100vw; */
   /* height: 100vh; */
   margin: 0px;
-  cursor: w-resize;
+  /* cursor: w-resize; */
 }
 
 #app {
@@ -190,20 +215,34 @@ button {
   border: none;
 
   color: white;
-  font-size: 16px;
+  font-size: inherit;
   line-height: 24px;
   font-family: inherit;
   font-style: italic;
-
+  /* font-size: 3em; */
   position: absolute;
-  top: 50%;
-  left: 10%;
   transform: translate(0, -50%);
 }
 
-button:hover {
-  cursor: w-resize;
+button#back {
+  top: 50%;
+  left: 10%;
+}
 
+button#back:hover {
+  cursor: w-resize;
+}
+
+button#forward {
+  top: 50%;
+  right: 8%;
+}
+
+button#forward:hover {
+  cursor: e-resize;
+}
+
+button:hover {
   color: lavender;
 }
 
