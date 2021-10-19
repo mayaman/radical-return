@@ -74,6 +74,7 @@ export default {
     // setInterval(() => {
     //   this.updateSite();
     // }, 10000);
+    this.handleWindowResize();
   },
   computed: {},
   methods: {
@@ -92,8 +93,6 @@ export default {
       }
     },
     backInTime() {
-      this.outerSize = this.mediumOuterSize;
-
       console.log("prev index: ", this.index);
 
       this.index = this.index + 1;
