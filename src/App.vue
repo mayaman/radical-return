@@ -52,7 +52,7 @@ export default {
   },
   data: function () {
     return {
-      index: Math.floor(Math.random() * siteDataJSON.siteData.length - 1),
+      index: 0, // Math.floor(Math.random() * siteDataJSON.siteData.length - 1),
       siteData: siteDataJSON.siteData,
       outerSize: 680,
       innerSize: 430,
