@@ -1,5 +1,9 @@
 {
     "siteData": [{
+            "date": "October 19, 2021",
+            "url": "https://www.grammatron.com/"
+        },
+        {
             "date": "October 16, 2021",
             "url": "https://americanidolauditiontraining.blogs.com/"
         },
@@ -127,14 +131,9 @@
             "date": "August 06, 2021",
             "url": "https://dinostomatopie.com/"
         },
-
         {
             "date": "July 16, 2021",
             "url": "https://www.bkabf.info/"
-        },
-        {
-            "date": "July 15, 2021",
-            "url": "https://www.newyorker.com/magazine/2021/07/12/what-makes-a-cult-a-cult"
         },
         {
             "date": "July 13, 2021",
@@ -168,7 +167,6 @@
             "date": "July 06, 2021",
             "url": "https://blog.fortrabbit.com/deploying-code-with-rsync"
         },
-
         {
             "date": "July 02, 2021",
             "url": "https://www.lynnhershman.com/project/roberta-breitmore/"
@@ -540,10 +538,6 @@
         {
             "date": "September 24, 2020",
             "url": "https://p5js.org/"
-        },
-        {
-            "date": "September 23, 2020",
-            "url": "https://computerlibbook.com/products/computer-lib-dream-machines"
         },
         {
             "date": "September 23, 2020",
