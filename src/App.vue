@@ -1,32 +1,30 @@
 <template>
   <div id="app">
-
     <video class="video-background" autoplay loop muted playsinline>
       <source src="@/assets/beach.mp4" type="video/mp4" />
     </video>
 
-      <!-- <video class="video-background" autoplay loop muted playsinline>
+    <!-- <video class="video-background" autoplay loop muted playsinline>
       <source src="@/assets/sunset_crop.mp4" type="video/mp4" />
     </video> -->
 
-     <!-- <video class="video-background" autoplay loop muted playsinline>
+    <!-- <video class="video-background" autoplay loop muted playsinline>
       <source src="https://cdn.videvo.net/videvo_files/video/free/2015-04/large_watermarked/Ocean_Waves_slow_motion_videvo_preview.mp4" type="video/mp4" />
     </video> -->
 
+    <TextBorder
+      :key="siteData[index].url"
+      class="radical"
+      :text="sliceURL(siteData[index].url)"
+      :size="outerSize"
+    />
 
-      <TextBorder
-        :key="siteData[index].url"
-        class="radical"
-        :text="sliceURL(siteData[index].url)"
-        :size="outerSize"
-      />
-
-      <TextBorder
-        :key="siteData[index].date"
-        class="radical"
-        :text="'visited on ' + siteData[index].date.toLowerCase()"
-        :size="innerSize"
-      />
+    <TextBorder
+      :key="siteData[index].date"
+      class="radical"
+      :text="'visited on ' + siteData[index].date.toLowerCase()"
+      :size="innerSize"
+    />
 
     <div class="radical stroke outer-shape">
       <div class="radical stroke inner-shape">
@@ -109,7 +107,7 @@ export default {
       let urlToDisplay = url;
 
       let maxURLLength = 70;
-      
+
       if (window.innerWidth < 600) {
         maxURLLength = 50;
       }
@@ -198,7 +196,6 @@ iframe {
 
 .stroke:hover {
   /* box-shadow: 0px 0px 15px white; */
-
 }
 
 .stroke {
@@ -233,17 +230,18 @@ button {
   /* font-style: italic; */
   text-align: center;
   position: absolute;
-  transform: translate(-50%, -50%);
 }
 
 button#back {
   top: 50%;
-  left: 10%;
+  left: 9%;
+  transform: translate(-50%, -50%);
 }
 
 button#forward {
   top: 50%;
-  right: 8%;
+  right: 9%;
+  transform: translate(50%, -50%);
 }
 
 button#back:hover {
@@ -284,13 +282,14 @@ button:hover {
   }
 
   button#back {
-    top: 18%;
+    top: 20%;
     left: 50%;
   }
 
   button#forward {
     left: 50%;
     top: 80%;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -306,11 +305,11 @@ button:hover {
   }
 
   button#back {
-    left: 1%;
+    left: 5%;
   }
 
   button#forward {
-    right: 1%;
+    right: 5%;
   }
 }
 </style>
