@@ -13,7 +13,7 @@
       <legend>{{ text }}</legend>
     </fieldset>
     <fieldset>
-      <legend>{{ text }}</legend>
+      <legend class="four">{{ text }}</legend>
     </fieldset>
   </div>
 </template>
@@ -33,7 +33,8 @@ export default {
 div.border {
   display: grid;
   margin: auto;
-  font-style: italic;
+  /* font-family: cursive; */
+  /* font-style: italic; */
 }
 
 fieldset {
@@ -41,10 +42,10 @@ fieldset {
   border-top-color: #000000;
   box-sizing: border-box;
   grid-area: 1 / 1;
-  /* padding: 20px; */
   border: none;
   width: inherit;
 }
+
 
 fieldset:nth-of-type(1) {
   background: content-box center/contain no-repeat;
@@ -65,11 +66,17 @@ fieldset:nth-of-type(4) {
 legend {
   /* font: 15pt/0 'Averia Serif Libre'; */
   margin: auto;
-  padding: 5px 0px;
+  padding: 3px 0px;
   /* background: hotpink; */
 }
+
+legend.four {
+  padding: 0px 0px;
+}
+
 
 fieldset:nth-of-type(3) > legend {
   transform: rotate(180deg);
 }
+
 </style>

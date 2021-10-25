@@ -1,30 +1,32 @@
 <template>
   <div id="app">
-    <!-- <div class="title">
-      😩 take me back
-    </div> -->
 
     <video class="video-background" autoplay loop muted playsinline>
-      <source src="@/assets/sunset_crop.mp4" type="video/mp4" />
+      <source src="@/assets/beach.mp4" type="video/mp4" />
     </video>
 
-    <transition name="fade">
+      <!-- <video class="video-background" autoplay loop muted playsinline>
+      <source src="@/assets/sunset_crop.mp4" type="video/mp4" />
+    </video> -->
+
+     <!-- <video class="video-background" autoplay loop muted playsinline>
+      <source src="https://cdn.videvo.net/videvo_files/video/free/2015-04/large_watermarked/Ocean_Waves_slow_motion_videvo_preview.mp4" type="video/mp4" />
+    </video> -->
+
+
       <TextBorder
         :key="siteData[index].url"
         class="radical"
         :text="sliceURL(siteData[index].url)"
         :size="outerSize"
       />
-    </transition>
 
-    <transition name="fade">
       <TextBorder
         :key="siteData[index].date"
         class="radical"
         :text="'visited on ' + siteData[index].date.toLowerCase()"
         :size="innerSize"
       />
-    </transition>
 
     <div class="radical stroke outer-shape">
       <div class="radical stroke inner-shape">
@@ -36,8 +38,8 @@
       </div>
     </div>
 
-    <button id="back" @click="backInTime()">back</button>
-    <button id="forward" @click="forwardInTime()">forward</button>
+    <button id="back" @click="backInTime()">(♥‿♥ ✿)</button>
+    <button id="forward" @click="forwardInTime()">(✿ ♥‿♥)</button>
   </div>
 </template>
 
@@ -126,15 +128,7 @@ body {
   min-width: 100vw;
   min-height: 100vh;
 
-  background: gray;
-  /* background: url(https://cdn.pixabay.com/photo/2017/03/17/19/37/sky-2152463_1280.jpg); */
-  /* background: url(https://unleash.org/wp-content/uploads/2017/01/sky-1280x720.jpg); */
-
-  /* BEACH WAVES COMING IN AND OUT background: url(https://media1.giphy.com/media/l4hLyOGRJWNSR8QQ8/giphy.gif?cid=ecf05e475u1fsbnioaemivo6097512teide6fcbsff5aj004&rid=giphy.gif&ct=g) */
-
-  /* background: url(https://media3.giphy.com/media/l0ExcZR3msPMnknBu/giphy.gif?cid=ecf05e47extt0bvm4kdho597jrikny1z18uknfmwm6hqhv9t&rid=giphy.gif&ct=g); */
-
-  /* background: url(https://media2.giphy.com/media/3oz8xur099boo4N9aU/giphy.gif?cid=ecf05e47lk8f72afxgh856vrlg5rmpwfhhxnspk7epzqzbi4&rid=giphy.gif&ct=g); */
+  background: lightskyblue;
   background-size: cover;
   background-position: fixed;
   -moz-user-select: none;
@@ -144,11 +138,11 @@ body {
   color: white;
   font-size: 16px;
   line-height: 24px;
+  text-shadow: 2px 2px 4px gray;
   overflow: hidden;
-  /* width: 100vw; */
-  /* height: 100vh; */
   margin: 0px;
-  /* cursor: w-resize; */
+
+  /* font-family: cursive; */
 }
 
 #app {
@@ -162,9 +156,9 @@ body {
 
 video.video-background {
   height: 100%;
-  width: 183.20610687vh; /* 100 * 16 / 9 */
+  width: 177.777777778vh; /* 100 * 16 / 9 */
   min-width: 100%;
-  min-height: 54.5833333333vw; /* 100 * 9 / 16 */
+  min-height: 56.25vw; /* 100 * 9 / 16 */
 }
 
 .title {
@@ -185,6 +179,7 @@ video.video-background {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 99999999;
 }
 
 iframe {
@@ -201,8 +196,14 @@ iframe {
   transform-origin: 0 0;
 }
 
+.stroke:hover {
+  /* box-shadow: 0px 0px 15px white; */
+
+}
+
 .stroke {
   border: 5px solid white;
+  box-shadow: 0px 0px 5px lightgray;
 }
 
 .outer-shape {
@@ -226,8 +227,10 @@ button {
   color: white;
   font-size: inherit;
   line-height: 24px;
+  text-shadow: 2px 2px 4px gray;
+
   font-family: inherit;
-  font-style: italic;
+  /* font-style: italic; */
   text-align: center;
   position: absolute;
   transform: translate(-50%, -50%);
@@ -244,15 +247,15 @@ button#forward {
 }
 
 button#back:hover {
-  cursor: w-resize;
+  cursor: help;
 }
 
 button#forward:hover {
-  cursor: e-resize;
+  cursor: help;
 }
 
 button:hover {
-  color: lavender;
+  text-shadow: 2px 2px 10px white;
 }
 
 /* .fade-enter-active,
