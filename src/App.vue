@@ -50,8 +50,7 @@
           >radical return</a
         >, this website features other websites that I've visited and saved to
         <a target="_blank" href="https://www.are.na/">are.na</a> that live at
-        URLs beyond the instagram, facebook, google, etc.com domains... when I
-        see them I feel like ughhhhh take me back because each one offers a beautiful view!!!
+        URLs beyond the instagram, facebook, google, etc.com domains... each one offers a beautiful view!!
       </p>
       <br />
       <p>
