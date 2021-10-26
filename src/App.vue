@@ -4,6 +4,37 @@
       <source src="@/assets/beach.mp4" type="video/mp4" />
     </video>
 
+    <div v-if="!showInfo">
+      <TextBorder
+        :key="siteData[index].url"
+        class="radical"
+        :text="'visited on ' + siteData[index].date.toLowerCase()"
+        :size="outerSize"
+      />
+
+      <TextBorder
+        :key="siteData[index].date"
+        class="radical"
+        :text="sliceURL(siteData[index].url)"
+        :size="innerSize"
+      />
+
+      <div class="radical stroke outer-shape">
+        <div class="radical stroke inner-shape">
+          <iframe
+            id="past-url"
+            :key="siteData[index].url"
+            :src="siteData[index].url"
+          ></iframe>
+        </div>
+      </div>
+
+      <button id="info" class="info" @click="toggleInfo()">
+        u need info???
+      </button>
+      <button id="back" @click="backInTime()">(♥‿♥ ✿)</button>
+      <button id="forward" @click="forwardInTime()">(✿ ♥‿♥)</button>
+    </div>
     <!-- <video class="video-background" autoplay loop muted playsinline>
       <source src="@/assets/sunset_crop.mp4" type="video/mp4" />
     </video> -->
@@ -12,32 +43,42 @@
       <source src="https://cdn.videvo.net/videvo_files/video/free/2015-04/large_watermarked/Ocean_Waves_slow_motion_videvo_preview.mp4" type="video/mp4" />
     </video> -->
 
-    <TextBorder
-      :key="siteData[index].url"
-      class="radical"
-      :text="sliceURL(siteData[index].url)"
-      :size="outerSize"
-    />
-
-    <TextBorder
-      :key="siteData[index].date"
-      class="radical"
-      :text="'visited on ' + siteData[index].date.toLowerCase()"
-      :size="innerSize"
-    />
-
-    <div class="radical stroke outer-shape">
-      <div class="radical stroke inner-shape">
-        <iframe
-          id="past-url"
-          :key="siteData[index].url"
-          :src="siteData[index].url"
-        ></iframe>
-      </div>
+    <div v-if="showInfo" class="info-popup">
+      <p>
+        part of the boston/shanghai exhibition
+        <a target="_blank" href="https://radicalcharacters.org/"
+          >radical return</a
+        >, this website features other websites that I've visited and saved to
+        <a target="_blank" href="https://www.are.na/">are.na</a> that live at
+        URLs beyond the instagram, facebook, google, etc.com domains... when I
+        see them I feel like ughhhhh take me back because each one offers a beautiful view!!!
+      </p>
+      <br />
+      <p>
+        endless gratitude for the people who put the websites featured here online :,)
+      </p>
+      <br>
+      <p>
+        what websites do u wanna go back to??? add them to 
+        <a
+          target="_blank"
+          href="https://www.are.na/maya-man/ugh-take-me-back-online"
+          >this channel here...</a
+        >
+      
+      </p>
+<br>
+      <p>
+        ♡,
+      </p>
+      <p> <a target="_blank" href="https://mayaontheinter.net/">maya</a></p>
+      <br />
+      <p>
+        <button @click="toggleInfo()" class="info" id="done">
+          okay... take! me! back!
+        </button>
+      </p>
     </div>
-
-    <button id="back" @click="backInTime()">(♥‿♥ ✿)</button>
-    <button id="forward" @click="forwardInTime()">(✿ ♥‿♥)</button>
   </div>
 </template>
 
@@ -63,6 +104,7 @@ export default {
       smallOuterSize: 370,
       smallInnerSize: 220,
       mediumWidthMax: 800,
+      showInfo: false,
     };
   },
   created() {
@@ -77,6 +119,9 @@ export default {
   },
   computed: {},
   methods: {
+    toggleInfo() {
+      this.showInfo = !this.showInfo;
+    },
     handleWindowResize() {
       if (window.innerWidth >= 900) {
         this.outerSize = this.largeOuterSize;
@@ -106,15 +151,18 @@ export default {
     sliceURL(url) {
       let urlToDisplay = url;
 
-      let maxURLLength = 70;
+      let maxURLLength = 50;
 
       if (window.innerWidth < 600) {
-        maxURLLength = 50;
+        maxURLLength = 30;
+      } else if (window.innerWidth < 900) {
+        maxURLLength = 40;
       }
 
       if (url.length > maxURLLength) {
-        urlToDisplay = urlToDisplay.slice(0, 70) + "...";
+        urlToDisplay = urlToDisplay.slice(0, maxURLLength) + "...";
       }
+
       return urlToDisplay;
     },
   },
@@ -129,10 +177,6 @@ body {
   background: lightskyblue;
   background-size: cover;
   background-position: fixed;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-user-select: none;
   color: white;
   font-size: 16px;
   line-height: 24px;
@@ -177,7 +221,7 @@ video.video-background {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 99999999;
+  z-index: 99999;
 }
 
 iframe {
@@ -256,14 +300,56 @@ button:hover {
   text-shadow: 2px 2px 10px white;
 }
 
-/* .fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1s;
+button.info {
+  margin: 0px;
+  padding: 0px;
 }
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-} */
+
+button#info {
+  top: 5px;
+  right: 5px;
+  cursor: help;
+}
+
+button#done {
+  cursor: w-resize;
+}
+
+div.info-popup {
+  max-width: 35%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999999999;
+  color: white;
+  text-shadow: 2px 2px 4px gray;
+  padding: 15px;
+}
+
+div.info-popup a {
+  color: white;
+}
+
+div.info-popup a:hover {
+  cursor: alias;
+  text-shadow: 2px 2px 10px white;
+}
+
+div.info-popup p {
+  margin: auto;
+  display: block;
+
+  /* position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+
+  color: white;
+  font-size: 16px;
+  line-height: 24px;
+  text-shadow: 2px 2px 4px gray;
+}
 
 @media only screen and (max-width: 600px) {
   body {
