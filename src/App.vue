@@ -29,9 +29,9 @@
         </div>
       </div>
 
-      <button id="info" class="info" @click="toggleInfo()">
+      <!-- <button id="info" class="info" @click="toggleInfo()">
         u need info???
-      </button>
+      </button> -->
       <button id="back" @click="backInTime()">(♥‿♥ ✿)</button>
       <button id="forward" @click="forwardInTime()">(✿ ♥‿♥)</button>
     </div>
@@ -50,7 +50,11 @@
           >radical return</a
         >, this website features other websites that I've visited and saved to
         <a target="_blank" href="https://www.are.na/">are.na</a> that live at
-        URLs beyond the instagram, facebook, google, etc.com domains... each one offers a beautiful view!!
+        URLs beyond the instagram, facebook, google, etc.com domains...
+      </p>
+      <br>
+      <p>
+        each one featured here offers a beautiful view!!
       </p>
       <br />
       <p>
@@ -114,6 +118,7 @@ export default {
     // setInterval(() => {
     //   this.updateSite();
     // }, 10000);
+    this.index = this.siteData.length - 1;
     this.handleWindowResize();
   },
   computed: {},
