@@ -118,7 +118,6 @@ export default {
     // setInterval(() => {
     //   this.updateSite();
     // }, 10000);
-    this.index = this.siteData.length - 1;
     this.handleWindowResize();
   },
   computed: {},
